@@ -6,16 +6,21 @@ class Spawner{
 public:
 	Spawner(Player entity, int count, float timer);
 	Spawner(int count, float timer);
+	Spawner();
 	~Spawner();
 
 	sf::Sprite* getSprite();
 	sf::Vector2f getPos();
+	int getCount();
+	float getTimer();
+	bool getRandomSpawn();
 	Player getEntity();
 
 	void setEntity(Player entity);
 	void setCount(int count);
 	void setTimer(float timer);
 	void setPos(sf::Vector2f pos);
+	void setRandomSpawn();
 	void loadImage();
 	void loadTextures();
 

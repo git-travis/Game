@@ -166,7 +166,7 @@ sf::Vector2f rectIMG::getAmountMoved(){
 }
 
 sf::Vector2f rectIMG::getSector(){
-	return sf::Vector2f((int) (this->getPos().x / 125), (int) (this->getPos().y / 125));
+	return sf::Vector2f((int) (getPos().x / 125), (int) (getPos().y / 125));
 }
 
 void rectIMG::updateRect(float elapsedTime){

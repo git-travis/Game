@@ -40,6 +40,8 @@ public:
 	int getX();
 	int getY();
 
+	sf::Vector2f getSector();
+
 	float getXLines();
 	float getYLines();
 

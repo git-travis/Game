@@ -14,6 +14,9 @@ Spawner::Spawner(int count, float timer){
 	_timer = timer;
 	loadTextures();
 }
+Spawner::Spawner(){
+
+}
 
 Spawner::~Spawner(){}
 
@@ -25,6 +28,15 @@ sf::Vector2f Spawner::getPos(){
 	return _sprite.getPosition();
 }
 
+int Spawner::getCount(){
+	return _count;
+}
+float Spawner::getTimer(){
+	return _timer;
+}
+bool Spawner::getRandomSpawn(){
+	return _randomSpawn;
+}
 Player Spawner::getEntity(){
 	return _entity;
 }
@@ -43,6 +55,11 @@ void Spawner::setTimer(float timer){
 
 void Spawner::setPos(sf::Vector2f pos){
 	_sprite.setPosition(pos);
+}
+void Spawner::setRandomSpawn(){
+	//just sets it opposite of the current value
+	//default is false
+	_randomSpawn = !_randomSpawn;
 }
 
 void Spawner::loadImage(){

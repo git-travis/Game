@@ -1,0 +1,17 @@
+New Collidable
+Sprites/Wall_Link.png
+0
+1
+-600
+-300
+1
+1
+----
+Structures End
+-600
+-300
+1
+1
+1
+----
+Spawners End

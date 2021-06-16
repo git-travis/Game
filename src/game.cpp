@@ -171,7 +171,7 @@ void Game::initALL(){
 	initHealth();
 	initBorders("Sprites/Border.png");
 	initConsumables();
-	initStrutures();
+	initMaps();
 	initAlive();
 	initDrops();
 }
@@ -195,21 +195,25 @@ void Game::initEnemyItems(){
 	_enemy.update(0, sf::Vector2f(0,0), sf::Vector2f(0,0), 0, 0);
 }
 
-void Game::initStrutures(){
+void Game::initMaps(){
+	std::vector<std::string> maps = _map.getMapList();
+	_map.load(maps.at(rand() % maps.size()));
+	/*
 	_structure = Collidable("Building", "Sprites/Wall_Link.png", -1000, -500, 5, 3);
 	_structure.build();
 	_structuresX = _structure.getSpritesX();
 	_structuresY = _structure.getSpritesY();
+	*/
 	//_structures.push_back(Collidable("Barrel", "Sprites/Barrel.png", -1000, -500, true));
 	//_structuresX.push_back(_structures[0].getSprite());
 }
 
-std::vector<sf::Sprite> Game::getBuildingSpritesX(){
+std::vector<sf::Sprite>* Game::getBuildingSprites(){
 
-	return _structuresX;
+	return _map.getStructureSprites();
 }
-std::vector<sf::Sprite> Game::getBuildingSpritesY(){
-	return _structuresY;
+std::vector<sf::Sprite>* Game::getSpawnerSprites(){
+	return _map.getSpawnerSprites();
 }
 std::vector<sf::Sprite> Game::getDropSprites(){
 	return _dropSprites;
@@ -618,11 +622,12 @@ void Game::update(float elapsedTime, sf::Vector2f mouse, sf::Vector2f mousepos, 
 		}
 	}
 
-	if((_player.getPos().x > _structure.getULCorner().x && _player.getPos().x < _structure.getULCorner().x + _structure.getXLines()) && (_player.getPos().y > _structure.getULCorner().y && _player.getPos().y < _structure.getULCorner().y + _structure.getYLines())){
-		_player.move(sf::Vector2f((_player.getPos().x - _structure.getCentralPos().x), (_player.getPos().y - _structure.getCentralPos().y)), elapsedTime * 10);
+	//check collision with structures, probably needs to be reworked
+	for(unsigned i = 0; i < _map.getStructures().size(); i++){
+		if(_map.getStructures()[i].checkColl(_player.getPos())){
+			_player.move(sf::Vector2f((_player.getPos().x - _map.getStructures()[i].getCentralPos().x), (_player.getPos().y - _map.getStructures()[i].getCentralPos().y)), elapsedTime * 10);
+		}
 	}
-
-
 
 	if(_projectiles.size() > 0){
 		for(unsigned i = 0; i < _projectiles.size(); i++){

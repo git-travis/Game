@@ -202,12 +202,18 @@ void Editor::handleConfirm(){
 		break;
 
 	case SAVELEVEL:
+		_map.save(_textInput);
+		_loading = false;
 		break;
 
 	case LOADLEVEL:
+		_map.load(_textInput);
+		_loading = false;
 		break;
 
 	case NEWLEVEL:
+		_map = Map();
+		_loading = false;
 		break;
 
 	case NEWCOLLIDABLE:
@@ -240,10 +246,13 @@ menuStatus Editor::handleClicks(sf::Vector2f mousePos, Game* game, bool mouseCli
 	switch(_click){
 		case GUI:
 			if(event.type == sf::Event::MouseButtonReleased){
-				for(unsigned int i = 0; i < _sprites.size(); i++){
+				for(unsigned i = 0; i < _sprites.size(); i++){
 						//checks to see where the mouse was clicked in the menu
 						if((game->checkXColl(_texture.getSize().x / 4, mousePos, _sprites.at(i).getPosition())) && (game->checkYColl(_texture.getSize().y / 4, mousePos, _sprites.at(i).getPosition()))){
 							//can't use a switch with strings :(
+							//this could be a switch statement by using i but that would require keeping track of the exact order they're in and being consistent with it
+							//in this specific case that is already done for their positions so it is worth considering but it would be a special case compared to all the other menus
+							//the difference in performance shouldn't be significant, or at least noticeable anyways
 							if(_text.at(i).getString() == "Back"){
 								return MAIN;
 							}
@@ -391,7 +400,9 @@ menuStatus Editor::handleClicks(sf::Vector2f mousePos, Game* game, bool mouseCli
 menuStatus Editor::update(sf::Vector2f mousePos, sf::Vector2f* view, Game* game, sf::RenderWindow* window, bool mouseClick, menuStatus prev, sf::Event event){
 	setPositions(*view);
 	drawSprites(window);
-	moveCamera(view, event);
+	if(!_loading){
+		moveCamera(view, event);
+	}
 
 
 	for(unsigned i = 0; i < _sprites.size() - 5; i++){

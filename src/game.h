@@ -3,7 +3,7 @@
 #include <iosfwd>
 
 #include "player.h"
-#include "collidable.h"
+#include "map.h"
 
 class Graphics;
 
@@ -40,7 +40,7 @@ public:
 	void initHealth();
 	void initBorders(std::string file);
 	void initConsumables();
-	void initStrutures();
+	void initMaps();
 	void initAlive();
 	void initDrops();
 	void initALL();
@@ -55,8 +55,8 @@ public:
 
 	std::vector<sf::Sprite> getPlayerSprites();
 	std::vector<sf::Sprite> getEnemySprites();
-	std::vector<sf::Sprite> getBuildingSpritesX();
-	std::vector<sf::Sprite> getBuildingSpritesY();
+	std::vector<sf::Sprite>* getBuildingSprites();
+	std::vector<sf::Sprite>* getSpawnerSprites();
 	std::vector<sf::Text> getGuiText(sf::Text * txt, sf::Vector2f view);
 
 	Player getPlayer();
@@ -135,13 +135,9 @@ private:
 
 	std::vector<sf::Sprite> _sprites;
 	std::vector<sf::Sprite> _spawnables;
-	std::vector<sf::Sprite> _structuresX;
-	std::vector<sf::Sprite> _structuresY;
 	std::vector<sf::Sprite> _dropSprites;
 
-
-	Collidable _structure;
-	std::vector<Collidable> _structures;
+	Map _map = Map();
 
 };
 

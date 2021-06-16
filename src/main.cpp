@@ -143,22 +143,9 @@ int main(){
 	menus.initMenus();
 
 
-	/*
-    sf::Texture menuTexture;
-    std::vector<sf::Sprite> menuSprites;
-    if(!menuTexture.loadFromFile("Sprites/Menu_Bar.png")){
-    	std::cout << "UNABLE TO OPEN MENU TEXTURE" << std::endl;
-    }
-    for(int i = 0; i < menuText.size(); i++){
-    	menuSprites.push_back(sf::Sprite(menuTexture));
-    	menuSprites[i].setOrigin(menuTexture.getSize().x / 2, menuTexture.getSize().y / 2);//sf::IntRect(0, 0, _texture.getSize().x, _texture.getSize().y)
-    	menuSprites[i].setTextureRect(sf::IntRect(0, 0, menuTexture.getSize().x, menuTexture.getSize().y));
-    	menuSprites[i].setScale(0.5, 0.5);
-    }
-    */
 
-    std::vector<sf::Sprite> XLinks = game.getBuildingSpritesX();
-    std::vector<sf::Sprite> YLinks = game.getBuildingSpritesY();
+    std::vector<sf::Sprite> XLinks = *game.getBuildingSprites();
+    std::vector<sf::Sprite> Spawners = *game.getSpawnerSprites();
 
 
     game.update(clock.restart().asSeconds(), mousexy(game, mousexy2, playerPos), mousexy2, game.getRadians(playerPos, mousexy2), game.getPlayerAngle(playerPos, mousexy2), game.getPlayerAngle(enemyPos, playerPos), game.getRadians(enemyPos, playerPos), mousexy(game, playerPos, enemyPos));
@@ -377,22 +364,22 @@ int main(){
 
             playerSprites = game.getPlayerSprites();
             for(unsigned i = 0; i < playerSprites.size(); i++){
-            	window.draw(playerSprites.at(i));
+            	window.draw(playerSprites[i]);
             }
             enemySprites = game.getEnemySprites();
             for(unsigned i = 0; i < enemySprites.size(); i++){
-            	window.draw(enemySprites.at(i));
+            	window.draw(enemySprites[i]);
             }
             dropSprites = game.getDropSprites();
             for(unsigned i = 0; i < dropSprites.size(); i++){
-            	window.draw(dropSprites.at(i));
+            	window.draw(dropSprites[i]);
             }
 
             for(unsigned i = 0; i < XLinks.size(); i++){
             	window.draw(XLinks[i]);
             }
-            for(unsigned i = 0; i < YLinks.size(); i++){
-            	window.draw(YLinks[i]);
+            for(unsigned i = 0; i < Spawners.size(); i++){
+            	window.draw(Spawners[i]);
             }
 
             //
