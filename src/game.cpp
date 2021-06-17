@@ -155,7 +155,7 @@ void Game::initDrops(){
 
 
 	for(unsigned i = 0; i < _drops.size(); i++){
-		_dropSprites.push_back(_drops.at(i)->getSprite());
+		_dropSprites.push_back(*_drops.at(i)->getSprite());
 	}
 }
 
@@ -228,19 +228,19 @@ std::vector<sf::Sprite> Game::getPlayerSprites(){
 	_sprites.clear();
 	_spawnables = _player.getSpawnables();
 
-	_sprites.push_back(_player.getSprite());
-	_borders.at(0).setPosition(_player.getHealthSprite().getPosition());
+	_sprites.push_back(*_player.getSprite());
+	_borders.at(0).setPosition(_player.getHealthSprite()->getPosition());
 	_sprites.push_back(_borders.at(0));
-	_sprites.push_back(_player.getHealthSprite());
-	_borders[1].setPosition(_player.getShieldSprite().getPosition());
+	_sprites.push_back(*_player.getHealthSprite());
+	_borders[1].setPosition(_player.getShieldSprite()->getPosition());
 	_sprites.push_back(_borders.at(1));
-	_sprites.push_back(_player.getShieldSprite());
-	_borders[2].setPosition(_player.getConsumableSprite().getPosition());
+	_sprites.push_back(*_player.getShieldSprite());
+	_borders[2].setPosition(_player.getConsumableSprite()->getPosition());
 	_sprites.push_back(_borders[2]);
-	_sprites.push_back(_player.getConsumableSprite());
-	_sprites.push_back(_player.getWeaponSprite());
-	_sprites.push_back(_player.getAbilitySprite());
-	_sprites.push_back(_player.getPassiveSprite());
+	_sprites.push_back(*_player.getConsumableSprite());
+	_sprites.push_back(*_player.getWeaponSprite());
+	_sprites.push_back(*_player.getAbilitySprite());
+	_sprites.push_back(*_player.getPassiveSprite());
 
 	if(_spawnables.size() > 0){
 		for(unsigned i = 0; i < _spawnables.size(); i++){
@@ -249,7 +249,7 @@ std::vector<sf::Sprite> Game::getPlayerSprites(){
 	}
 	if(_projectiles.size() > 0){
 		for(unsigned i = 0; i < _projectiles.size(); i++){
-			_sprites.push_back(_projectiles[i].getSprite());
+			_sprites.push_back(*_projectiles[i].getSprite());
 		}
 	}
 
@@ -259,19 +259,19 @@ std::vector<sf::Sprite> Game::getEnemySprites(){
 	_sprites.clear();
 	_spawnables = _enemy.getSpawnables();
 
-	_sprites.push_back(_enemy.getSprite());
-	_borders.at(3).setPosition(_enemy.getHealthSprite().getPosition());
+	_sprites.push_back(*_enemy.getSprite());
+	_borders.at(3).setPosition(_enemy.getHealthSprite()->getPosition());
 	_sprites.push_back(_borders.at(3));
-	_sprites.push_back(_enemy.getHealthSprite());
-	_borders[4].setPosition(_enemy.getShieldSprite().getPosition());
+	_sprites.push_back(*_enemy.getHealthSprite());
+	_borders[4].setPosition(_enemy.getShieldSprite()->getPosition());
 	_sprites.push_back(_borders.at(4));
-	_sprites.push_back(_enemy.getShieldSprite());
-	_borders[5].setPosition(_enemy.getConsumableSprite().getPosition());
+	_sprites.push_back(*_enemy.getShieldSprite());
+	_borders[5].setPosition(_enemy.getConsumableSprite()->getPosition());
 	_sprites.push_back(_borders[5]);
-	_sprites.push_back(_enemy.getConsumableSprite());
-	_sprites.push_back(_enemy.getWeaponSprite());
-	_sprites.push_back(_enemy.getAbilitySprite());
-	_sprites.push_back(_enemy.getPassiveSprite());
+	_sprites.push_back(*_enemy.getConsumableSprite());
+	_sprites.push_back(*_enemy.getWeaponSprite());
+	_sprites.push_back(*_enemy.getAbilitySprite());
+	_sprites.push_back(*_enemy.getPassiveSprite());
 
 	if(_spawnables.size() > 0){
 		for(unsigned i = 0; i < _spawnables.size(); i++){
@@ -473,7 +473,7 @@ void Game::playerDrop(itemType type){
 		for(unsigned i = 0; i < _abilities.size(); i++){
 			if(_abilities.at(i).getName() == _player.getAbility().getName()){
 				_abilities.at(i).setPos(_player.getPos());
-				_dropSprites.push_back(_abilities.at(i).getSprite());
+				_dropSprites.push_back(*_abilities.at(i).getSprite());
 				_drops.push_back(&_abilities.at(i));
 			}
 		}
@@ -483,7 +483,7 @@ void Game::playerDrop(itemType type){
 		for(unsigned i = 0; i < _passives.size(); i++){
 			if(_passives.at(i).getName() == _player.getPassive().getName()){
 				_passives.at(i).setPos(_player.getPos());
-				_dropSprites.push_back(_passives.at(i).getSprite());
+				_dropSprites.push_back(*_passives.at(i).getSprite());
 				_drops.push_back(&_passives.at(i));
 			}
 		}
@@ -493,7 +493,7 @@ void Game::playerDrop(itemType type){
 		for(unsigned i = 0; i < _shields.size(); i++){
 			if(_shields.at(i).getName() == _player.getShield().getName()){
 				_shields.at(i).setPos(_player.getPos());
-				_dropSprites.push_back(_shields.at(i).getSprite());
+				_dropSprites.push_back(*_shields.at(i).getSprite());
 				_drops.push_back(&_shields.at(i));
 			}
 		}
@@ -503,7 +503,7 @@ void Game::playerDrop(itemType type){
 		for(unsigned i = 0; i < _weapons.size(); i++){
 			if(_weapons.at(i).getName() == _player.getWeapon().getName()){
 				_weapons.at(i).setPos(_player.getPos());
-				_dropSprites.push_back(_weapons.at(i).getSprite());
+				_dropSprites.push_back(*_weapons.at(i).getSprite());
 				_drops.push_back(&_weapons.at(i));
 			}
 		}
@@ -513,7 +513,7 @@ void Game::playerDrop(itemType type){
 		for(unsigned i = 0; i < _healths.size(); i++){
 			if(_healths.at(i).getName() == _player.getHealth().getName()){
 				_healths.at(i).setPos(_player.getPos());
-				_dropSprites.push_back(_healths.at(i).getSprite());
+				_dropSprites.push_back(*_healths.at(i).getSprite());
 				_drops.push_back(&_healths.at(i));
 			}
 		}

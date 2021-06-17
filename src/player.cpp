@@ -104,7 +104,7 @@ void Player::triggerAbility(){
 				if(_ability->getAmtUsed() == 0){
 					_ability->setTelePos(getPos());
 					_ability->setAmtUsed(1);
-					_spawnables.push_back(_ability->getSpawnable());
+					_spawnables.push_back(*_ability->getSpawnable());
 					_spawnables[0].setPosition(getPos());
 				}
 				else{
@@ -127,22 +127,22 @@ void Player::triggerAbility(){
 }
 
 
-sf::Sprite Player::getAbilitySprite(){
+sf::Sprite* Player::getAbilitySprite(){
 	return _ability->getSprite();
 }
-sf::Sprite Player::getPassiveSprite(){
+sf::Sprite* Player::getPassiveSprite(){
 	return _passive->getSprite();
 }
-sf::Sprite Player::getShieldSprite(){
+sf::Sprite* Player::getShieldSprite(){
 	return _shield->getSprite();
 }
-sf::Sprite Player::getWeaponSprite(){
+sf::Sprite* Player::getWeaponSprite(){
 	return _weapon->getSprite();
 }
-sf::Sprite Player::getHealthSprite(){
+sf::Sprite* Player::getHealthSprite(){
 	return _health->getSprite();
 }
-sf::Sprite Player::getConsumableSprite(){
+sf::Sprite* Player::getConsumableSprite(){
 	return _consumable->getSprite();
 }
 

@@ -48,12 +48,12 @@ public:
 	Item getDrop(itemType type);
 
 
-	sf::Sprite getAbilitySprite();
-	sf::Sprite getPassiveSprite();
-	sf::Sprite getShieldSprite();
-	sf::Sprite getWeaponSprite();
-	sf::Sprite getHealthSprite();
-	sf::Sprite getConsumableSprite();
+	sf::Sprite* getAbilitySprite();
+	sf::Sprite* getPassiveSprite();
+	sf::Sprite* getShieldSprite();
+	sf::Sprite* getWeaponSprite();
+	sf::Sprite* getHealthSprite();
+	sf::Sprite* getConsumableSprite();
 
 	std::vector<sf::Sprite> getSpawnables();
 

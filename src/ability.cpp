@@ -105,7 +105,7 @@ void Ability::coolDown(){
 	_onCD = true;
 }
 
-sf::Sprite Ability::getSpawnable(){
+sf::Sprite* Ability::getSpawnable(){
 	return _spawnable.getSprite();
 }
 

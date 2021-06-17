@@ -56,8 +56,8 @@ const void rectIMG::loadIMG(std::string file){
 	}
 }
 
-sf::Sprite rectIMG::getSprite(){
-	return _sprite;
+sf::Sprite* rectIMG::getSprite(){
+	return &_sprite;
 }
 
 sf::Texture rectIMG::getText() const{

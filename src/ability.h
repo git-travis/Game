@@ -33,7 +33,7 @@ public:
 	apType getAType();
 	aMoveType getAMType();
 
-	sf::Sprite getSpawnable();
+	sf::Sprite* getSpawnable();
 	void loadSpawnable();
 
 	void update(float elapsedTime, sf::Vector2f pos);

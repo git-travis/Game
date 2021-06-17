@@ -13,7 +13,7 @@ public:
 
 	const void loadIMG(std::string file);
 	const void loadIMG();
-	sf::Sprite getSprite();
+	sf::Sprite* getSprite();
 	sf::Texture getText() const;
 	std::string getFile() const;
 	sf::IntRect getRect() const;

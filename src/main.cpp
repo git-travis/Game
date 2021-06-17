@@ -352,7 +352,7 @@ int main(){
 
 
             window.clear();
-            window.draw(BGimg.getSprite());
+            window.draw(*BGimg.getSprite());
 
             //window.mapPixelToCoords(sf::Vector2i(sf::Mouse::getPosition(window).x - 100, sf::Mouse::getPosition(window).y - 100))
             //game.setWPos(sf::Vector2f(game.getPlayer().getPos().x - 75, game.getPlayer().getPos().y + 75));
@@ -390,7 +390,7 @@ int main(){
 
 
 
-            window.draw(cursor.getSprite());
+            window.draw(*cursor.getSprite());
 
             //window.draw(spr.getSprite());
             //window.draw(chara.getSprite());
